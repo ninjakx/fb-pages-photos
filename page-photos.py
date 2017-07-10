@@ -18,10 +18,9 @@ def create_dir(fname):
         os.mkdir(filename)
     os.chdir(filename)
 
-
 def save_and_download(object_id):
     global count
-    
+ 
     display = Xvfb()#Hide the browser
     display.start()
     url='https://graph.facebook.com/'+object_id+'/picture'
@@ -41,7 +40,6 @@ def save_and_download(object_id):
     driver.quit()
     display.stop()
 
-
 def fetch(limit, depth, id=ID, token=TOKEN):
 
     """Fetch the data using Facebook's Graph API"""
@@ -54,9 +52,6 @@ def fetch(limit, depth, id=ID, token=TOKEN):
     res = graph.request('%s/photos/uploaded' % id, args)
     #print(res)
     process(res['data'],depth)
- 
-
-  
  
 def process(dat,depth):
     
@@ -73,8 +68,7 @@ def process(dat,depth):
             if 'name' in dat[d]:   #If image has caption or decription save it in the folder
    
                 save_and_download(dat[d]['id'])
-
-   
+ 
 if __name__ == '__main__':
    
     fname=str(raw_input("Enter filename : "))
